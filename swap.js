@@ -26,7 +26,7 @@ async function swapToken(tokenAddress,buySol=false) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -264,7 +264,7 @@ async function swapTokenRapid(tokenAddress,poolKeys_,amount=0.0001,buySol=false)
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -464,7 +464,7 @@ async function swapTokenFaster(connection,tokenAddress,poolKeys_,amount=0.0001,b
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -664,7 +664,7 @@ async function swapTokenLegacy(tokenAddress,poolKeys_,amount=0.0001,buySol=false
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -816,7 +816,7 @@ async function swapTokenBundling(tokenAddress,poolKeys_,amount=0.0001) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -1068,7 +1068,7 @@ async function swapTokenTrick(tokenAddress,poolKeys_,amount=0.0001) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -1326,7 +1326,7 @@ async function swapTokenContractSell(tokenAddress,poolKeys_,latestBlock) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -1534,7 +1534,7 @@ async function swapTokenContractBuy(tokenAddress,poolKeys_,latestBlock) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -1692,7 +1692,7 @@ async function swapTokenMy(tokenAddress,poolKeys_,latestBlock) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -2006,7 +2006,7 @@ async function swapTokenTest(tokenAddress,poolKeys_,amount) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -2284,7 +2284,7 @@ async function swapTokenTestBuy(tokenAddress,poolKeys_,amount) {
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -2570,7 +2570,7 @@ async function swapTokenThor(tokenAddress,poolKeys_,amount=0.0001,buySol=false) 
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -2713,7 +2713,7 @@ const swapPumpfun=async (targetToken, bondingCurve,bondingCurveVault,amount,buy)
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -2955,7 +2955,7 @@ const swapPumpfunFaster=async (connection, targetToken, bondingCurve,bondingCurv
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -3199,7 +3199,7 @@ const swapPumpfunFaster=async (connection, targetToken, bondingCurve,bondingCurv
 
 
 const pumpfunSwapTransaction=async (tokenAddress,amount,buy)=>{
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   const connection=new Connection(process.env.RPC_API)
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
   const response = await fetch(`https://pumpportal.fun/api/trade-local`, {
@@ -3309,7 +3309,7 @@ const pumpfunSwapTransaction=async (tokenAddress,amount,buy)=>{
 
 
 const pumpfunSwapTransactionFaster=async (connection, tokenAddress,amount,buy)=>{
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   // const connection=new Connection(process.env.RPC_API)
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
   const response = await fetch(`https://pumpportal.fun/api/trade-local`, {
@@ -3426,7 +3426,7 @@ const launchToken=async (tokenName, tokenSymbol, tokenDescription, tokenImageUrl
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   // const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
   const mintKeypair=Keypair.generate()
@@ -3588,7 +3588,7 @@ const launchToken=async (tokenName, tokenSymbol, tokenDescription, tokenImageUrl
 
 const withdrawFromWallet=async (trickWallet,walletAddress)=>{
   const connection = new Connection(process.env.RPC_API);
-  // const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  // const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   // const mainWallet = Keypair.fromSecretKey(PRIVATE_KEY);
   // console.log(trickWalletPrivateKey)
   // const trickWallet=Keypair.fromSecretKey(Uint8Array.from(trickWalletPrivateKey))
@@ -3698,7 +3698,7 @@ const withdrawFromWallet=async (trickWallet,walletAddress)=>{
 }
 const depositWallet=async (trickWalletAddress)=>{
   const connection = new Connection(process.env.RPC_API);
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   const mainWallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
   const depositTx=new Transaction();
@@ -3770,7 +3770,7 @@ const depositWallet=async (trickWalletAddress)=>{
 
 const trickToken=async (wallet)=>{
   const connection = new Connection(process.env.RPC_API);
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   const mainWallet = Keypair.fromSecretKey(PRIVATE_KEY);
   const trickWallet=Keypair.generate();
   if(!fs.existsSync(path.resolve(__dirname,"wallets",trickWallet.publicKey.toBase58()))){
@@ -3903,7 +3903,7 @@ const trickToken=async (wallet)=>{
 
 const deposit=async (mainWallet,toAddress,amount)=>{
   const connection = new Connection(process.env.RPC_API);
-  // const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  // const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   // const mainWallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
   const depositTx=new Transaction();
@@ -4233,7 +4233,7 @@ const swapPumpfunWallet=async (wallet,targetToken,bondingCurve,bondingCurveVault
   return true;
 }
 const pumpfunSwapTransactionWallet=async (wallet,tokenAddress,amount,buy)=>{
-  // const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  // const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
   const connection=new Connection(process.env.RPC_API)
   // const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
   const response = await fetch(`https://pumpportal.fun/api/trade-local`, {
@@ -4355,7 +4355,7 @@ const pumpfunSwapSWQOS=async (targetToken, bondingCurve,bondingCurveVault,amount
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -4621,7 +4621,7 @@ async function swapTokenAccounts(connection, tokenAddress, accounts,amount=0.000
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
@@ -4899,7 +4899,7 @@ async function swapTokenFastest(connection, tokenAddress, poolKeys_,amount=0.000
   const SOL_MINT_PUBKEY=new PublicKey(SOL_MINT_ADDRESS)
   const MYTOKEN_MINT_PUBKEY=new PublicKey(MYTOKEN_MINT_ADDRESS)
 
-  const PRIVATE_KEY = Uint8Array.from(JSON.parse(process.env.PRIVATE_KEY));
+  const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 
   const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
 
