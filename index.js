@@ -6,6 +6,7 @@ const Client=require("@triton-one/yellowstone-grpc");
 
 const PUMPFUN_CONTRACT="6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
 const connection=new Connection(process.env.RPC_API)
+const bs58=require("bs58")
 
 function connectGeyser(){
     const client =new Client.default("http://grpc.solanavibestation.com:10000/",undefined,undefined);
