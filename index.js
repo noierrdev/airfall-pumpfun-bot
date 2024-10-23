@@ -8,7 +8,7 @@ const PUMPFUN_CONTRACT="6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
 const METAPLEX_CONTRACT="metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 const connection=new Connection(process.env.RPC_API)
 const bs58=require("bs58")
-const { swapPumpfunFaster }=require("./swap")
+const { swapPumpfunFaster, pumpfunSwapTransactionFaster }=require("./swap")
 
 const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
@@ -75,7 +75,8 @@ function connectGeyser(){
                             // console.log(transaction.meta.postTokenBalances)
                             return;
                         }
-                        await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
                     }
                 }
             });
