@@ -1,0 +1,73 @@
+require("dotenv").config()
+
+const { Connection } = require("@solana/web3.js")
+//geyser client
+const Client=require("@triton-one/yellowstone-grpc");
+
+
+const connection=new Connection(process.env.RPC_API)
+
+function connectGeyser(){
+    const client =new Client.default("https://newyork.firenode.sh:10000","f-9f03-d40c-2a3a-9aef",undefined);
+    client.getVersion()
+    .then(async version=>{
+        try {
+            console.log(version)
+            const request =Client.SubscribeRequest.fromJSON({
+                accounts: {},
+                slots: {},
+                transactions: {
+                    raydium: {
+                        vote: false,
+                        failed: false,
+                        signature: undefined,
+                        accountInclude: ["675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"],
+                        accountExclude: [],
+                        accountRequired: [],
+                    },
+                },
+                transactionsStatus: {},
+                entry: {},
+                blocks: {},
+                blocksMeta: {},
+                accountsDataSlice: [],
+                ping: undefined,
+                commitment: Client.CommitmentLevel.PROCESSED
+            })
+        
+            const stream =await client.subscribe();
+            stream.on("data", async (data) => {
+                // console.log(data.transaction.transaction)
+                if(data.transaction&&data.transaction.transaction&&data.transaction.transaction.signature) {
+                    const sig=bs58.encode(data.transaction.transaction.signature)
+                    const transaction=data.transaction.transaction;
+                    // console.log(`https://solscan.io/tx/${sig}`)
+                    if(transaction.meta.logMessages.some(log=>log.includes("InitializeMint")||log.includes("initialize2"))){
+                    }
+                }
+            });
+            await new Promise((resolve, reject) => {
+                stream.write(request, (err) => {
+                    if (err === null || err === undefined) {
+                    resolve();
+                    } else {
+                    reject(err);
+                    }
+                });
+            }).catch((reason) => {
+                console.error(reason);
+                throw reason;
+            });
+        } catch (error) {
+            console.log(error)
+            console.log("RECONNECTING!!!")
+            setTimeout(() => {
+                connectGeyser()
+            }, 2000);
+            
+        }
+
+    });
+}
+
+connectGeyser()
