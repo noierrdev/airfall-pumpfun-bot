@@ -4,11 +4,11 @@ const { Connection } = require("@solana/web3.js")
 //geyser client
 const Client=require("@triton-one/yellowstone-grpc");
 
-
+const PUMPFUN_CONTRACT="6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
 const connection=new Connection(process.env.RPC_API)
 
 function connectGeyser(){
-    const client =new Client.default("https://newyork.firenode.sh:10000","f-9f03-d40c-2a3a-9aef",undefined);
+    const client =new Client.default("http://grpc.solanavibestation.com:10000/",undefined,undefined);
     client.getVersion()
     .then(async version=>{
         try {
@@ -17,11 +17,11 @@ function connectGeyser(){
                 accounts: {},
                 slots: {},
                 transactions: {
-                    raydium: {
+                    pumpfun: {
                         vote: false,
                         failed: false,
                         signature: undefined,
-                        accountInclude: ["675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"],
+                        accountInclude: [PUMPFUN_CONTRACT],
                         accountExclude: [],
                         accountRequired: [],
                     },
@@ -37,12 +37,12 @@ function connectGeyser(){
         
             const stream =await client.subscribe();
             stream.on("data", async (data) => {
-                // console.log(data.transaction.transaction)
                 if(data.transaction&&data.transaction.transaction&&data.transaction.transaction.signature) {
                     const sig=bs58.encode(data.transaction.transaction.signature)
                     const transaction=data.transaction.transaction;
-                    // console.log(`https://solscan.io/tx/${sig}`)
-                    if(transaction.meta.logMessages.some(log=>log.includes("InitializeMint")||log.includes("initialize2"))){
+                    if(transaction.meta.logMessages.some(log=>log.includes("InitializeMint2"))){
+                        console.log(`https://solscan.io/tx/${sig}`)
+                        console.log(JSON.stringify(transaction))
                     }
                 }
             });
