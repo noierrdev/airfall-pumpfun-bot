@@ -70,6 +70,8 @@ function connectGeyser(){
                         const signer=allAccounts[0]
                         if(signer!=wallet.publicKey.toBase58()){
                             console.log("Not your token!!!")
+                            console.log(transaction.meta.preTokenBalances)
+                            console.log(transaction.meta.postTokenBalances)
                             return;
                         }
                         
