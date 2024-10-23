@@ -12,6 +12,7 @@ const { swapPumpfunFaster }=require("./swap")
 
 const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
+console.log(`wallet address : ${wallet.publicKey.toBase58()}`)
 
 function connectGeyser(){
     const client =new Client.default("http://grpc.solanavibestation.com:10000/",undefined,undefined);
@@ -74,7 +75,6 @@ function connectGeyser(){
                             // console.log(transaction.meta.postTokenBalances)
                             return;
                         }
-                        
                         await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
                     }
                 }
