@@ -39,7 +39,7 @@ function connectGeyser(){
                 blocksMeta: {},
                 accountsDataSlice: [],
                 ping: undefined,
-                commitment: Client.CommitmentLevel.CONFIRMED
+                commitment: Client.CommitmentLevel.PROCESSED
             })
         
             const stream =await client.subscribe();
@@ -76,7 +76,10 @@ function connectGeyser(){
                             return;
                         }
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
-                        await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
+                        setTimeout(async () => {
+                            await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
+                        }, 1000);
+                        
                     }
                 }
             });
