@@ -87,6 +87,20 @@ function connectGeyser(){
                         // }, 500);
                         
                     }else if(transaction.meta.logMessages.some(log=>log.includes("Buy"))){
+                        var pumpfunProgramIndex=0;
+                        var metaplexProgramIndex=0;
+                        const allAccounts=[];
+                        transaction.transaction.message.accountKeys.map((account,index)=>{
+                            if(!account) return;
+                            const accountID=bs58.encode(account);
+                            allAccounts.push(accountID);
+                            if(accountID==PUMPFUN_CONTRACT){
+                                pumpfunProgramIndex=index;
+                            }
+                            if(accountID==METAPLEX_CONTRACT){
+                                metaplexProgramIndex=index;
+                            }
+                        })
                         const pumpfunInstructions = (transaction?.transaction.message.instructions).find(instruction =>((instruction.programIdIndex==pumpfunProgramIndex)));
                         const targetToken=allAccounts[pumpfunInstructions.accounts[2]]
                         const bondingCurve=allAccounts[pumpfunInstructions.accounts[3]]
@@ -94,7 +108,7 @@ function connectGeyser(){
                         if(!myTokens[targetToken]) return;
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
                         await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false);
-                        await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
                         delete myTokens[targetToken]
                     }
                 }
