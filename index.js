@@ -78,7 +78,7 @@ function connectGeyser(){
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
                         setTimeout(async () => {
                             await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
-                        }, 1000);
+                        }, 3000);
                         
                     }
                 }
