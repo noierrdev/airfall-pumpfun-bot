@@ -12,7 +12,9 @@ const { swapPumpfunFaster, pumpfunSwapTransactionFaster }=require("./swap")
 
 const PRIVATE_KEY = Uint8Array.from(bs58.decode(process.env.PRIVATE_KEY));
 const wallet = Keypair.fromSecretKey(PRIVATE_KEY);
-console.log(`wallet address : ${wallet.publicKey.toBase58()}`)
+console.log(`wallet address : ${wallet.publicKey.toBase58()}`);
+
+var myTokens={};
 
 function connectGeyser(){
     const client =new Client.default("http://grpc.solanavibestation.com:10000/",undefined,undefined);
@@ -75,11 +77,25 @@ function connectGeyser(){
                             // console.log(transaction.meta.postTokenBalances)
                             return;
                         }
+                        myTokens[targetToken]={
+                            bondingCurve,
+                            bondingCurveVault
+                        }
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
-                        setTimeout(async () => {
-                            await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
-                        }, 500);
+                        // setTimeout(async () => {
+                        //     await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
+                        // }, 500);
                         
+                    }else if(transaction.meta.logMessages.some(log=>log.includes("Buy"))){
+                        const pumpfunInstructions = (transaction?.transaction.message.instructions).find(instruction =>((instruction.programIdIndex==pumpfunProgramIndex)));
+                        const targetToken=allAccounts[pumpfunInstructions.accounts[2]]
+                        const bondingCurve=allAccounts[pumpfunInstructions.accounts[3]]
+                        const bondingCurveVault=allAccounts[pumpfunInstructions.accounts[4]]
+                        if(!myTokens[targetToken]) return;
+                        // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false);
+                        await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        delete myTokens[targetToken]
                     }
                 }
             });
