@@ -102,6 +102,7 @@ function connectGeyser(){
                             }
                         })
                         const pumpfunInstructions = (transaction?.transaction.message.instructions).find(instruction =>((instruction.programIdIndex==pumpfunProgramIndex)));
+                        if(!pumpfunInstructions) return;
                         const targetToken=allAccounts[pumpfunInstructions.accounts[2]]
                         const bondingCurve=allAccounts[pumpfunInstructions.accounts[3]]
                         const bondingCurveVault=allAccounts[pumpfunInstructions.accounts[4]]
