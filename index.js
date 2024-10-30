@@ -82,9 +82,9 @@ function connectGeyser(){
                             bondingCurveVault
                         }
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
-                        setTimeout(async () => {
-                            await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
-                        }, 600);
+                        // setTimeout(async () => {
+                        //     await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false)
+                        // }, 600);
                         
                     }else if(transaction.meta.logMessages.some(log=>log.includes("Buy"))){
                         var pumpfunProgramIndex=0;
@@ -97,9 +97,18 @@ function connectGeyser(){
                             if(accountID==PUMPFUN_CONTRACT){
                                 pumpfunProgramIndex=index;
                             }
-                            if(accountID==METAPLEX_CONTRACT){
-                                metaplexProgramIndex=index;
-                            }
+                        })
+                        transaction.meta.loadedWritableAddresses.map((account,index)=>{
+                            if(!account) return;
+                            const accountID=bs58.encode(account);
+                            // if((!detected)&&wallets.includes(accountID)) detected=true;
+                            allAccounts.push(accountID);
+                        })
+                        transaction.meta.loadedReadonlyAddresses.map((account,index)=>{
+                            if(!account) return;
+                            const accountID=bs58.encode(account);
+                            // if((!detected)&&wallets.includes(accountID)) detected=true;
+                            allAccounts.push(accountID);
                         })
                         const pumpfunInstructions = (transaction?.transaction.message.instructions).find(instruction =>((instruction.programIdIndex==pumpfunProgramIndex)));
                         if(!pumpfunInstructions) return;
@@ -107,8 +116,8 @@ function connectGeyser(){
                         const bondingCurve=allAccounts[pumpfunInstructions.accounts[3]]
                         const bondingCurveVault=allAccounts[pumpfunInstructions.accounts[4]]
                         if(!myTokens[targetToken]) return;
-                        // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
-                        // await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false);
+                        await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
+                        await pumpfunSwapTransactionFaster(connection,targetToken,0.1,false);
                         // await swapPumpfunFaster(connection,targetToken,bondingCurve,bondingCurveVault,0.001,false);
                         delete myTokens[targetToken]
                     }
