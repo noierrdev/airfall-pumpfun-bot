@@ -2970,7 +2970,7 @@ const swapPumpfunFaster=async (connection, targetToken, bondingCurve,bondingCurv
   );
   const accountInfo = await connection.getAccountInfo(solATA);
   
-  txObject.add(ComputeBudgetProgram.setComputeUnitPrice({ microLamports: 300000}));
+  txObject.add(ComputeBudgetProgram.setComputeUnitPrice({ microLamports: 600000}));
   if (accountInfo) {
     txObject.add(
       createCloseAccountInstruction(
@@ -3110,7 +3110,7 @@ const swapPumpfunFaster=async (connection, targetToken, bondingCurve,bondingCurv
     "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
     "3AVi9Tg9Uo68tJfuvoKvqKNWKkC5wPdSSdeBnizKZ6jT"
   ]
-  const jito_tip_amount=BigInt(Number(300000))
+  const jito_tip_amount=BigInt(Number(600000))
   var jito_tip_account=new PublicKey(jito_tip_accounts[6]);
   txObject.add(
     SystemProgram.transfer({
@@ -3324,7 +3324,7 @@ const pumpfunSwapTransactionFaster=async (connection, tokenAddress,amount,buy)=>
           "denominatedInSol": buy?'true':'false',
           "amount": buy?String(amount):"100%",
           "slippage": 10, 
-          "priorityFee": 0.0003, 
+          "priorityFee": 0.0006, 
           "pool": "pump"
       })
   });
@@ -3346,7 +3346,7 @@ const pumpfunSwapTransactionFaster=async (connection, tokenAddress,amount,buy)=>
       "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
       "3AVi9Tg9Uo68tJfuvoKvqKNWKkC5wPdSSdeBnizKZ6jT"
     ]
-    const jito_tip_amount=BigInt(Number(300000))
+    const jito_tip_amount=BigInt(Number(600000))
     const jito_tip_index=(Math.round(Math.random()*10))%8;
     const jito_tip_account=new PublicKey(jito_tip_accounts[jito_tip_index]);
     jitoTx.add(
